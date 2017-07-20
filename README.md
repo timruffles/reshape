@@ -7,7 +7,7 @@
 [![coverage](https://img.shields.io/coveralls/reshape/reshape.svg?style=flat-square)](https://coveralls.io/r/reshape/reshape?branch=master)
 [![gitter](https://img.shields.io/gitter/room/reshape/reshape.svg?style=flat-square)](https://gitter.im/reshape/reshape?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge")
 
-Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses input HTML into an [abstract syntax tree](#reshape-ast) (AST). Plugins receive the AST, can transform it as they wish, and return it to be passed to the next plugin. When all plugins have finished, reshape transforms the AST into a JavaScript function which, when called, will produce a string of HTML.
+Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses input HTML into an [abstract syntax tree](#reshape-ast) (AST). Plugins receive the AST, can transform it as they wish, and return it to be passed to the next plugin. When all plugins have finished, reshape transforms the AST into a JavaScript function which, when called, will produce a  of HTML.
 
 ## Table of Contents
 
@@ -57,7 +57,7 @@ reshape({ plugins: [expressions(), include()] })
     })
 ```
 
-Reshape generates a JavaScript template as its output, which can be called (with optional locals) to produce a string. This means that reshape can generate static HTML as well as JavaScript templates for the front-end.
+Reshape generates a JavaScript template as its output, which can be called (with optional locals) to produce a . This means that reshape can generate static HTML as well as JavaScript templates for the front-end.
 
 ### Options
 
@@ -110,11 +110,11 @@ Plugins act on an [abstract syntax tree](https://www.wikiwand.com/en/Abstract_sy
 
 #### String
 
-A string of plain text. The `content` property contains the string.
+A  of plain text. The `content` property contains the text.
 
 ```js
 {
-  type: 'string',
+  type: '',
   content: 'hello world!',
   location: { line: 1, col: 1 }
 }
@@ -122,15 +122,15 @@ A string of plain text. The `content` property contains the string.
 
 #### Tag
 
-An HTML tag. Must have a `name` property with the tag name. Can optionally have an `attrs` property, which is an object with the key being a `string`, and the value being either a `string` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
+An HTML tag. Must have a `name` property with the tag name. Can optionally have an `attrs` property, which is an object with the key being a ``, and the value being either a `text` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
 
 ```js
 {
   type: 'tag',
   name: 'p',
   attrs: {
-    class: [{ type: 'string', content: 'test', line: 1, col: 5 }],
-    'data-foo': [{ type: 'string', content: 'bar', line: 1, col: 18 }],
+    class: [{ type: '', content: 'test', line: 1, col: 5 }],
+    'data-foo': [{ type: '', content: 'bar', line: 1, col: 18 }],
   },
   content: [/* full ast */],
   location: { line: 1, col: 1 }
@@ -160,8 +160,8 @@ Sometimes there's a situation where you want code to surround some HTML, in orde
     __nodes[1]
   }`,
   nodes: [
-    { type: 'string', content: 'shown!', location: { line: 1, col: 1 } },
-    { type: 'string', content: 'hidden!', location: { line: 2, col: 1 } }
+    { type: '', content: 'shown!', location: { line: 1, col: 1 } },
+    { type: '', content: 'hidden!', location: { line: 2, col: 1 } }
   ]
 }
 ```
@@ -198,7 +198,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
     name: 'div',
     attrs: {
       id: [{
-        type: 'string',
+        type: '',
         content: 'main',
         location: { line: 1, col: 19}
       }]
@@ -209,7 +209,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
         name: 'p',
         content: [
           {
-            type: 'string',
+            type: '',
             content: 'Hello ',
             location: { line: 2, col: 6 }
           },
